@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{% static 'bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/fontawesome/css/font-awesome.css' %}">
+
+    <!--<script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/jquery-ui/jquery-ui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/underscore/underscore.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap/js/tab.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/tablesorter/jquery.tablesorter.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/tablesorter/addons/pager/jquery.tablesorter.pager.js' %}"></script>-->
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <div id="library-container">
+        <div class="container">
+            <div class="row clearfix">
+                {% block header %}{% endblock %}
+            </div>
+            <div class="row clearfix">
+                {% block sidebar %}{% endblock %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    {% block footer %}{% endblock %}
+
+</div>
+<script data-main="{% static 'js/main' %}" src="{% static 'bower_components/requirejs/require.js' %}"></script>
+</body>
+</html>
