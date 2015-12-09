@@ -11,5 +11,6 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^main/', main)
+    url(r'^main/', main),
+    url(r'^$', main)
 ]

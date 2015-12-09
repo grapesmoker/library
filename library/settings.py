@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'library.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'library',
-        'USER': 'django',
-        'PASSWORD': 'django'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'library.db'),
+        #'USER': 'django',
+        #'PASSWORD': 'django'
     }
 }
 
@@ -105,13 +105,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'components', 'bower_components'),
     #os.path.join(BASE_DIR, 'papers', 'static')
 )
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 
 BOWER_INSTALLED_APPS = (
     'jquery',
@@ -121,5 +121,7 @@ BOWER_INSTALLED_APPS = (
     'jquery-ui',
     'fontawesome',
     'tablesorter',
-    'requirejs'
+    'requirejs',
+    'require-handlebars-plugin',
+    'jquery-cookie'
 )

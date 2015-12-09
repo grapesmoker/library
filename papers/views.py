@@ -15,3 +15,7 @@ from django.contrib.auth.decorators import login_required
 
 def main(request):
     return render_to_response('main.html', )
+
+def library(request):
+
+    return render_to_response('library.html')

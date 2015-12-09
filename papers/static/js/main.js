@@ -1,33 +1,41 @@
-/*global require*/
-'use strict';
-
-
 require.config({
   shim: {
     bootstrap: {
       deps: ['jquery'],
       exports: 'jquery'
-    }
+    },
   },
   paths: {
-    jquery: '../bower_components/jquery/dist/jquery',
-    backbone: '../bower_components/backbone/backbone',
-    underscore: '../bower_components/underscore/underscore',
-    bootstrap: '../bower_components/bootstrap/dist/js/bootstrap'
+    jquery: '../jquery/dist/jquery',
+    jqueryui: '../jquery-ui/jquery-ui',
+    jquerycookie: '../jquery.cookie/jquery.cookie',
+    backbone: '../backbone/backbone',
+    underscore: '../underscore/underscore',
+    bootstrap: '../bootstrap/dist/js/bootstrap',
+    router: './routers/router',
+    hbs: '../require-handlebars-plugin/hbs',
+    text: '../requirejs-text/text'
   }
 });
-
 
 require([
   'backbone',
   'jquery',
   'underscore',
-], function (Backbone, $, _) {
+  'router',
+  'jquerycookie'
+], function(Backbone, $, _, Router) {
+  $(function() {
 
-  console.log('foo')
+    // set up the custom header for csrf tokens
+    var csrf = $.cookie('csrftoken')
+    $.ajaxSetup({
+      headers: {
+        "X-CSRFToken": csrf
+      }
+    });
 
-  $(function () {
-    console.log('other stuff happens here and here')
-  });
+    var router = new Router;
 
-});
+  })
+})
