@@ -36,6 +36,18 @@ require([
     });
 
     var router = new Router;
+    Backbone.history.start()
+
+    $('.tree-toggle').click(function () {
+      console.log('foo')
+      $(this).parent().children('ul.tree').toggle(200);
+    });
+
+    $('.list-group-item').on('click', function() {
+      $('.glyphicon', this)
+        .toggleClass('glyphicon-chevron-right')
+        .toggleClass('glyphicon-chevron-down');
+      });
 
   })
 })

@@ -17,7 +17,5 @@ define(['backbone',
           }
         })
 
-        Backbone.history.start()
-
         return Router
       })

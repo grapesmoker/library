@@ -1,16 +1,19 @@
 <div class="list-group">
-  <a href="#" class="list-group-item">
+  <a href="#home" class="list-group-item">
     <i class="fa fa-home"></i> Home
   </a>
-  <a href="/shelves/" class="list-group-item">
-    <i class="fa fa-book"></i> Shelves
+
+  <a href="#libraries" class="list-group-item" data-toggle="collapse">
+    <i class="fa fa-book"></i> Libraries
   </a>
-  <a href= "/documents/" class="list-group-item">
-    <i class="fa fa-file-o"></i> Documents
-  </a>
-  <a href="/add_library/" class="list-group-item">
-    <i class="fa fa-plus-circle"></i> New Library
-  </a>
+
+  <div class="list-group collapse" id="libraries">
+    <a href="/new_library/" class="list-group-item">
+      <i class="fa fa-plus-circle"></i> New Library
+    </a>
+    <!-- insert libraries here via template -->
+    <!-- shelves go under each library -->
+  </div>
   <a href="/contacts/" class="list-group-item">
     <i class="fa fa-envelope"></i> Contacts
   </a>
