@@ -126,3 +126,5 @@ BOWER_INSTALLED_APPS = (
     'require-handlebars-plugin',
     'jquery-cookie'
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

@@ -7,10 +7,15 @@
     <i class="fa fa-book"></i> Libraries
   </a>
 
-  <div class="list-group collapse" id="libraries">
+  <div class="list-group collapse {% if libraries %}in{% endif %}" id="libraries">
     <a href="/new_library/" class="list-group-item">
       <i class="fa fa-plus-circle"></i> New Library
     </a>
+    {% for library in libraries %}
+      <a href="/library/{{ library.id}}/" class="list-group-item">
+        <i class="fa fa-book"></i> {{ library.name }}
+      </a>
+    {% endfor %}
     <!-- insert libraries here via template -->
     <!-- shelves go under each library -->
   </div>

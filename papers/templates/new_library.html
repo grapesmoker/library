@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block title %}
 Main
 {% endblock %}
@@ -19,7 +19,7 @@ Main
       {% include "sidebar.html" %}
     </div>
     <div class="col-md-9">
-      main
+      {% crispy form %}
     </div>
 </div>
 

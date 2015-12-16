@@ -5,7 +5,7 @@ define(['backbone',
         var Router = Backbone.Router.extend({
           routes: {
             'home': 'home',
-            'settings': 'settings'
+            'settings': 'settings',
           },
 
           home: function() {

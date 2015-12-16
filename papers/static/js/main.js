@@ -35,7 +35,7 @@ require([
       }
     });
 
-    var router = new Router;
+    var router = new Router();
     Backbone.history.start()
 
     $('.tree-toggle').click(function () {
