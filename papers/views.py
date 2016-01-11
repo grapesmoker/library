@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 
 from forms import *
 from models import *
-
+from utils import *
 
 def main(request):
 
@@ -76,5 +76,12 @@ def new_library(request):
             new_lib.documentroot_set.add(new_root)
             new_lib.owner = user
             new_lib.save()
+
+            records = find_pdfs(new_root.path)
+
+            for record in records:
+                doc = Document()
+                doc.title = record.title
+                doc.authors = record.authors
 
             return HttpResponseRedirect('/')
