@@ -24,6 +24,7 @@ def main(request):
         libraries = user.library_set.all()
     else:
         user = None
+        libraries = []
 
     return render_to_response('main.html', {'user': user,
                                             'libraries': libraries})
@@ -82,6 +83,21 @@ def new_library(request):
             for record in records:
                 doc = Document()
                 doc.title = record.title
-                doc.authors = record.authors
+                doc.location = record.path
+                doc.library = new_lib
+                doc.save()
+                for author in record.authors:
+                    names = author.split()
+                    first_name = names[0]
+                    last_name = names[-1]
+                    if len(names) > 2:
+                        middle_name = ' '.join(names[1:-1])
+                    existing_authors = Author.objects.filter(first_name=first_name, middle_name=middle_name, last_name=last_name)
+                    if len(existing_authors) > 0:
+                        author = existing_authors[0]
+                    else:
+                        author = Author(last_name=last_name, first_name=first_name, middle_name=middle_name)
+                        author.save()
+                    doc.authors.add(author)
 
             return HttpResponseRedirect('/')

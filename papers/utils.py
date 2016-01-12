@@ -13,12 +13,13 @@ def find_pdfs(root):
     for dirpath, dirnames, filenames in os.walk(root):
         for filename in filenames:
             if filename.endswith('.pdf'):
-                reader = PyPDF2.PdfFileReader(open(filename, 'r'))
+                full_path = os.path.join(dirpath, filename)
+                reader = PyPDF2.PdfFileReader(open(full_path, 'r'))
                 info = reader.getDocumentInfo()
-                record = LibRecord()
-                record.title = info.title or ''
-                record.authors = info.author or ''
-                record.path = filename
+                authors = info.author or ''
+                if authors != '':
+                    authors = authors.split(',')
+                record = LibRecord(info.title or '', authors, full_path)
                 records.append(record)
 
     return records

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Document(models.Model):
 
     title = models.CharField(max_length=1000)
-    authors = models.ForeignKey('Author')
+    authors = models.ManyToManyField('Author')
     location = models.CharField(max_length=2000)
     library = models.ForeignKey('Library', null=True)
 

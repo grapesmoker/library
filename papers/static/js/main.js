@@ -36,8 +36,9 @@ require([
     });
 
     var router = new Router();
-    Backbone.history.start()
+    Backbone.history.start({pushState: true})
 
+    // tree toggling
     $('.tree-toggle').click(function () {
       console.log('foo')
       $(this).parent().children('ul.tree').toggle(200);
@@ -48,6 +49,18 @@ require([
         .toggleClass('glyphicon-chevron-right')
         .toggleClass('glyphicon-chevron-down');
       });
+
+    // bypass for hrefs
+    $(document).on("click", "a:not([data-bypass])", function(evt) {
+      var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };
+      var root = location.protocol + "//" + location.host + Backbone.history.options.root;
+
+      if (href.prop && href.prop.slice(0, root.length) === root) {
+        evt.preventDefault();
+        // console.log(href.attr)
+        router.navigate(href.attr, true);
+      }
+    });
 
   })
 })
