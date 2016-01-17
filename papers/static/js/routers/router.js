@@ -6,6 +6,8 @@ define(['backbone',
           routes: {
             'home': 'home',
             'settings': 'settings',
+            'library': 'library',
+            'library/:id': 'library'
           },
 
           home: function() {
@@ -14,6 +16,13 @@ define(['backbone',
 
           settings: function() {
             console.log('settings')
+          },
+
+          library: function(id) {
+            console.log('library ' + id)
+            $.get('/library/' + id, function(data) {
+              console.log(data)
+            })
           }
         })
 

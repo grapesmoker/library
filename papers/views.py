@@ -7,10 +7,10 @@ from django import forms
 from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import ListView
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from forms import *
@@ -30,11 +30,6 @@ def main(request):
                                             'libraries': libraries})
 
 
-def library(request):
-
-    return render_to_response('library.html')
-
-
 def register(request):
 
     if request.method == 'POST':
@@ -44,13 +39,21 @@ def register(request):
             new_lib_user = LibraryUser()
             new_lib_user.user = new_user
             new_lib_user.save()
-            login(request, new_user)
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password2'])
+            login(request, user)
             return HttpResponseRedirect('/')
 
     else:
         form = RegistrationForm()
 
     return render(request, 'registration/register.html', {'form': form})
+
+
+@login_required
+def lib_logout(request):
+
+    logout(request)
+    return HttpResponseRedirect('/')
 
 
 @login_required
@@ -101,3 +104,12 @@ def new_library(request):
                     doc.authors.add(author)
 
             return HttpResponseRedirect('/')
+
+
+@login_required
+def library(request, lib_id):
+    if request.method == 'GET':
+        user = request.user.libraryuser
+        lib = Library.objects.get(id=lib_id)
+
+        return JsonResponse(lib.to_dict())

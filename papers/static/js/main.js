@@ -8,7 +8,7 @@ require.config({
   paths: {
     jquery: '../jquery/dist/jquery',
     jqueryui: '../jquery-ui/jquery-ui',
-    jquerycookie: '../jquery.cookie/jquery.cookie',
+    jquerycookie: '../jquery-cookie/jquery.cookie',
     backbone: '../backbone/backbone',
     underscore: '../underscore/underscore',
     bootstrap: '../bootstrap/dist/js/bootstrap',
