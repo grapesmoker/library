@@ -1,0 +1,4 @@
+pysolr
+django-crispy-forms
+django-bower
+

@@ -8,7 +8,7 @@ require.config({
   paths: {
     jquery: '../jquery/dist/jquery',
     jqueryui: '../jquery-ui/jquery-ui',
-    jquerycookie: '../jquery-cookie/jquery.cookie',
+    jquerycookie: '../jquery.cookie/jquery.cookie',
     backbone: '../backbone/backbone',
     underscore: '../underscore/underscore',
     bootstrap: '../bootstrap/dist/js/bootstrap',
@@ -52,6 +52,7 @@ require([
 
     // bypass for hrefs
     $(document).on("click", "a:not([data-bypass])", function(evt) {
+      console.log('foo')
       var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };
       var root = location.protocol + "//" + location.host + Backbone.history.options.root;
 
