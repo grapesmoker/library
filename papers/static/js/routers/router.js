@@ -1,8 +1,9 @@
 define(['backbone',
         'jquery',
         'underscore',
-        'models/library'],
-      function(Backbone, $, _, Library) {
+        'models/library',
+        'views/library'],
+      function(Backbone, $, _, Library, LibraryView) {
         var Router = Backbone.Router.extend({
           routes: {
             'home': 'home',
@@ -20,14 +21,12 @@ define(['backbone',
           },
 
           library: function(lib_id) {
-            console.log('library ' + lib_id)
             var library = new Library({id: lib_id})
             library.fetch({
               success: function(library_data) {
-                console.log(library_data)
+                var library = new LibraryView({model: library_data})
               }
             })
-            console.log(library.toJSON())
           }
         })
 

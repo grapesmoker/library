@@ -14,8 +14,8 @@ require.config({
     bootstrap: '../bootstrap/dist/js/bootstrap',
     router: './routers/router',
     hbs: '../require-handlebars-plugin/hbs',
-    text: '../requirejs-text/text'
-  }
+    text: '../requirejs-text/text',
+  },
 });
 
 require([
@@ -23,7 +23,8 @@ require([
   'jquery',
   'underscore',
   'router',
-  'jquerycookie'
+  'jquerycookie',
+
 ], function(Backbone, $, _, Router) {
   $(function() {
 
@@ -40,7 +41,6 @@ require([
 
     // tree toggling
     $('.tree-toggle').click(function () {
-      console.log('foo')
       $(this).parent().children('ul.tree').toggle(200);
     });
 
@@ -52,7 +52,6 @@ require([
 
     // bypass for hrefs
     $(document).on("click", "a:not([data-bypass])", function(evt) {
-      console.log('foo')
       var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };
       var root = location.protocol + "//" + location.host + Backbone.history.options.root;
 

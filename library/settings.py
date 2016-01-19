@@ -125,7 +125,8 @@ BOWER_INSTALLED_APPS = (
     'requirejs',
     'require-handlebars-plugin',
     'jquery-cookie',
-    'backbone.paginator'
+    'backbone.paginator',
+    'handlebars'
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

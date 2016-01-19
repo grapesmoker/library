@@ -66,6 +66,7 @@ class Library(models.Model):
         docs = self.document_set.all()
         lib_dict = {'name': self.name,
                     'id': self.id,
+                    'description': self.description,
                     'documents': []}
         for doc in docs:
             lib_dict['documents'].append(doc.to_dict())
