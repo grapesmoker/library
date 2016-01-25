@@ -11,6 +11,7 @@ class Document(models.Model):
     authors = models.ManyToManyField('Author', null=True)
     location = models.CharField(max_length=2000)
     library = models.ForeignKey('Library', null=True)
+    abstract = models.TextField(default='')
 
     def to_dict(self):
         authors = [auth.to_dict() for auth in self.authors.all()]

@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'djangobower',
     'crispy_forms',
+    'tastypie',
     'papers'
 )
 
@@ -130,3 +131,5 @@ BOWER_INSTALLED_APPS = (
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+TASTYPIE_DEFAULT_FORMATS = ['json']

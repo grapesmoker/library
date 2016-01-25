@@ -113,3 +113,7 @@ def library(request, lib_id):
         lib = Library.objects.get(id=lib_id)
 
         return JsonResponse(lib.to_dict())
+
+    elif request.method == 'PUT':
+
+        user = request.user.libraryuser

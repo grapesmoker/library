@@ -3,8 +3,16 @@ from django.contrib import admin
 from django.contrib.auth.views import login as auth_login, logout as auth_logout
 from django.conf.urls.static import static
 from django.conf import settings
+from tastypie.api import Api
 
 from papers.views import *
+from papers.api import *
+
+library_api = Api(api_name='library')
+library_api.register(UserResource())
+library_api.register(LibraryResource())
+library_api.register(DocumentResource())
+library_api.register(DocumentRootResource())
 
 urlpatterns = [
     # Examples:
@@ -20,5 +28,6 @@ urlpatterns = [
     url(r'^logout/$', lib_logout),
     url(r'^new_library/', new_library),
     # AJAX calls
-    url(r'^library/(?P<lib_id>[0-9]+)/$', library),
+    #url(r'^library/(?P<lib_id>[0-9]+)/$', library),
+    url(r'^api/', include(library_api.urls))
 ]

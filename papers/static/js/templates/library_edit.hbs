@@ -1,0 +1,18 @@
+<div>
+  <form id="library-form">
+    <div class="form-group">
+      <label for="library-name">Library name:</label>
+      <input type="text" name="name" class="form-control" id="library-name" value="{{name}}">
+    </div>
+    <div class="form-group">
+      <label for="library-description">Library description:</label>
+      <textarea id="library-description" name="description" class="form-control">{{description}}</textarea>
+    </div>
+    <input type="hidden" id="library-id" name="id" value="{{id}}">
+  </form>
+  <div class="btn-group" role="group">
+    <button class="btn btn-primary" id="save-library">
+      <i class="fa fa-edit"></i> Save
+    </button>
+  </div>
+</div>
