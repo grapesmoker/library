@@ -1,0 +1,21 @@
+<tr id="author-{{id}}">
+    <td>
+        <h4>{{last_name}}</h4>
+    </td>
+    <td>
+        <h4>{{first_name}}</h4>
+    </td>
+    <td>
+        <h4>{{middle_name}}</h4>
+    </td>
+    <td id="author-buttons-{{id}}">
+        <button class="btn btn-primary btn-xs edit-author" data-id="{{id}}" data-toggle="tooltip"
+                title="Edit author">
+            <i class="fa fa-edit" data-id="{{id}}"></i>
+        </button>
+        <button class="btn btn-danger btn-xs delete-author" data-id="{{id}}" data-toggle="tooltip"
+                title="Delete author">
+            <i class="fa fa-close" data-id="{{id}}"></i>
+        </button>
+    </td>
+</tr>

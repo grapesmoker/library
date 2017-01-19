@@ -1,11 +1,27 @@
 <table class="table table-striped" id="documents" width="100%">
-  <thead>
+    <thead>
     <tr>
-      <th>Document Info</th>
-      <th>Actions</th>
+        <th>Document Info</th>
+        <th>Actions</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody id="documents-body">
 
-  </tbody>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" id="library-previous" href="#">Previous</a></li>
+                    {{#each pages}}
+                        <li class="page-item">
+                            <a class="page-link" id="library-page-{{this}}" href="#">{{this}}</a>
+                        </li>
+                    {{/each}}
+                    <li class="page-item"><a class="page-link" id="library-next" href="#">Next</a></li>
+                </ul>
+            </td>
+        </tr>
+    </tfoot>
 </table>
+

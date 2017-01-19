@@ -9,11 +9,8 @@ define(['backbone',
             'home': 'home',
             'settings': 'settings',
             'library': 'library',
-            'library/:id': 'library'
-          },
-
-          home: function() {
-            console.log('home')
+            'library/:id': 'library',
+            //'login': 'accounts/login'
           },
 
           settings: function() {
@@ -27,6 +24,12 @@ define(['backbone',
                 var library = new LibraryView({model: library_data})
               }
             })
+          },
+
+          home: function() {
+            console.log('home')
+            $('div#contents').empty()
+            this.navigate('/', true)
           }
         })
 

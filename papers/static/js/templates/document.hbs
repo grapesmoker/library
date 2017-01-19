@@ -1,16 +1,25 @@
-<tr>
-  <td id="document-{{id}}">
-    <h4>{{title}}</h4>
-    <h4>{{location}}</h4>
-    <h4>{{authors}}</h4>
-    <p>{{abstract}}</p>
-  </td>
-  <td>
-    <button class="btn btn-primary btn-xs" id="edit-document-{{id}}">
-      <i class="fa fa-edit"></i>
-    </button>
-    <button class="btn btn-danger btn-xs" id="delete-document-{{id}}">
-      <i class="fa fa-close"></i>
-    </button>
-  </td>
+<tr id="document-{{id}}">
+    <td id="document-data-{{id}}" width="80%">
+        <h4>{{title}}</h4>
+        <h4>{{location}}</h4>
+        {{#each authors}}
+            <h4>{{last_name}}, {{first_name}} {{middle_name}}</h4>
+        {{/each}}
+        <p>{{abstract}}</p>
+    </td>
+    <td id="document-buttons-{{id}}">
+        <button class="btn btn-primary btn-xs edit-document" data-id="{{id}}"
+                data-toggle="tooltip" title="Edit document">
+            <i class="fa fa-edit" data-id="{{id}}"></i>
+        </button>
+        <button class="btn btn-primary btn-xs rename-document" data-id="{{id}}"
+                data-toggle="tooltip" title="Rename document">
+            <i class="fa fa-file-text" data-id="{{id}}"></i>
+        </button>
+        <button class="btn btn-danger btn-xs delete-document" data-id="{{id}}"
+                data-toggle="tooltip" title="Delete document">
+            <i class="fa fa-close" data-id="{{id}}"></i>
+        </button>
+
+    </td>
 </tr>

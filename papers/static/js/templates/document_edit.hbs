@@ -1,0 +1,51 @@
+<tr>
+    <td width="100%">
+        <div>
+            <form id="document-form">
+                <div class="form-group">
+                    <label class="control-label" for="document-title">Document title:</label>
+                    <input type="text" name="title" class="form-control" id="document-title" value="{{title}}">
+                    <label class="control-label" for="document-path">Located at:</label>
+                    <input type="text" class="form-control" value="{{location}}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="document-authors">Authors:</label>
+                    <select class="form-control" name="authors" id="document-authors" multiple>
+                        {{#each authors}}
+                            <option value="{{id}}" data-first-name="{{first_name}}" data-last-name="{{last_name}}"
+                                    data-middle-name="{{middle_name}}" data-resource-uri="{{resource_uri}}"
+                                    data-id="{{id}}">
+                                {{last_name}}, {{first_name}} {{middle_name}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-success add-new-author" data-id="{{id}}">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <button class="btn btn-primary add-existing-author" data-id="{{id}}">
+                        <i class="fa fa-search-plus"></i>
+                    </button>
+                    <button class="btn btn-danger remove-selected-author" data-id="{{id}}">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="abstract">Abstract:</label>
+                    <textarea id="document-abstract" name="abstract" class="form-control">{{abstract}}</textarea>
+                </div>
+                <input type="hidden" id="document-id" name="id" value="{{id}}">
+            </form>
+            <div class="btn-group" role="group">
+                <button class="btn btn-primary" id="save-document" data-id="{{id}}">
+                    <i class="fa fa-edit" data-id="{{id}}"></i> Save
+                </button>
+                <button class="btn btn-secondary" id="cancel-edit-document" data-id="{{id}}">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </td>
+    <td>&nbsp;</td>
+</tr>

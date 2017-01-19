@@ -1,0 +1,35 @@
+<div class="modal fade" role="dialog" tabindex="-1" id="edit-dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="modal-label">Edit Document Information</h4>
+        <div>
+          <form id="document-form">
+            <div class="form-group">
+              <label for="document-title">Document title:</label>
+              <input type="text" name="title" class="form-control" id="document-title" value="{{title}}">
+            </div>
+            <div class="form-group">
+              <label for="authors">Authors:</label>
+              <textarea id="document-authors" name="authors" class="form-control">{{authors}}</textarea>
+              <span class="help-block">One author per line in Lastname, Firstname MiddleNames format</span>
+            </div>
+            <div class="form-group">
+              <label for="abstract">Abstract:</label>
+              <textarea id="document-abstract" name="abstract" class="form-control">{{abstract}}</textarea>
+            </div>
+            <input type="hidden" id="document-id" name="id" value="{{id}}">
+          </form>
+          <div class="btn-group" role="group">
+            <button class="btn btn-primary" id="save-document">
+              <i class="fa fa-edit"></i> Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

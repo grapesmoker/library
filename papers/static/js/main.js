@@ -38,6 +38,7 @@ require([
 
     var router = new Router();
     Backbone.history.start({pushState: true})
+    $('[data-toggle="tooltip"]').tooltip()
 
     // tree toggling
     $('.tree-toggle').click(function () {
@@ -57,8 +58,8 @@ require([
 
       if (href.prop && href.prop.slice(0, root.length) === root) {
         evt.preventDefault();
-        // console.log(href.attr)
-        router.navigate(href.attr, true);
+        console.log(href.attr)
+        router.navigate(href.attr, {'trigger': true});
       }
     });
 

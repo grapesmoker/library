@@ -13,6 +13,7 @@ library_api.register(UserResource())
 library_api.register(LibraryResource())
 library_api.register(DocumentResource())
 library_api.register(DocumentRootResource())
+library_api.register(AuthorResource())
 
 urlpatterns = [
     # Examples:

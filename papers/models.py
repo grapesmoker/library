@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 import json
-# Create your models here.
 
 
 class Document(models.Model):
@@ -41,6 +40,17 @@ class Author(models.Model):
     def to_json(self):
         return json.dumps(self.to_dict())
 
+    def __str__(self):
+        return ' '.join([str(self.first_name), str(self.middle_name), str(self.last_name)])
+
+    def __repr__(self):
+        return self.__str__()
+
+
+class Editor(Author):
+
+    pass
+
 
 class LibraryUser(models.Model):
 
@@ -61,7 +71,7 @@ class Library(models.Model):
 
     name = models.CharField(max_length=500)
     owner = models.ForeignKey(LibraryUser, null=True)
-    description = models.TextField()
+    description = models.TextField(default='', null=True)
 
     def to_dict(self):
         docs = self.document_set.all()
@@ -81,6 +91,7 @@ class Publication(models.Model):
 
     name = models.CharField(max_length=500)
     url = models.URLField(max_length=500)
+    description = models.TextField(default='', null=True)
 
 
 class Journal(Publication):
@@ -90,9 +101,21 @@ class Journal(Publication):
 
 class Article(Document):
 
-    pass
+    journal = models.ForeignKey(Journal, null=True)
+    pages = models.CharField(max_length=50, null=True)
+    volume = models.CharField(max_length=10, null=True)
+    series = models.CharField(max_length=200, null=True)
+    year = models.IntegerField(null=True)
+    date = models.DateField(null=True)
 
 
 class Book(Document):
 
     isbn = models.CharField(max_length=25)
+
+
+class Category(models.Model):
+
+    name = models.CharField(max_length=200)
+    description = models.TextField(null=True)
+    parent_category = models.ForeignKey('Category')

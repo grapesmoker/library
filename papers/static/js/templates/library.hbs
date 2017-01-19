@@ -1,14 +1,17 @@
 <div>
-  <h2 id="library-name">{{name}}</h2>
-  <p class="lead" id="library-description">{{description}}</p>
-  <p class="lead" id="library-path">Located at: {{location.[0].path}}</p>
-  <div class="btn-group" role="group">
-    <button class="btn btn-primary" id="edit-library">
-      <i class="fa fa-edit"></i> Edit
-    </button>
-    <button class="btn btn-primary" id="show-documents">
-      <i class="fa fa-files-o"></i> Documents
-    </button>
-  </div>
-  <input type="hidden" id="library-id" value="{{id}}">
+    <h2 id="library-name">{{name}}</h2>
+    <p class="lead" id="library-description">{{description}}</p>
+    <p class="lead" id="library-path">Located at: {{location.[0].path}}</p>
+    <div class="btn-group" role="group">
+        <button class="btn btn-primary" id="edit-library">
+            <i class="fa fa-edit"></i> Edit
+        </button>
+        <button class="btn btn-primary" id="show-documents">
+            <i class="fa fa-files-o"></i> Documents
+        </button>
+        <button class="btn btn-primary" id="show-authors">
+            <i class="fa fa-pencil"></i> Authors
+        </button>
+    </div>
+    <input type="hidden" id="library-id" value="{{id}}">
 </div>
