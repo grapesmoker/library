@@ -12,10 +12,12 @@ from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from forms import *
 from models import *
 from utils import *
+
 
 def main(request):
 
@@ -117,3 +119,19 @@ def library(request, lib_id):
     elif request.method == 'PUT':
 
         user = request.user.libraryuser
+
+
+@login_required
+def search(request, model):
+
+    if request.method == 'GET':
+        term = request.GET['term']
+
+        if model == 'author':
+            authors = Author.objects.filter(
+                    Q(last_name__icontains=term) |
+                    Q(first_name__icontains=term) |
+                    Q(middle_name__icontains=term)
+            ).order_by('last_name')
+            authors = [author.to_dict() for author in authors]
+            return JsonResponse({'authors': authors})

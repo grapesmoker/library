@@ -1,0 +1,23 @@
+<tr id="category-{{id}}">
+    <td>
+        <h4>{{name}}</h4>
+    </td>
+    <td>
+        <h4>{{description}}</h4>
+    </td>
+    <td>
+        {{#with parent}}
+            <h4>{{name}}</h4>
+        {{/with}}
+    </td>
+    <td id="category-buttons-{{id}}">
+        <button class="btn btn-primary btn-xs edit-category" data-id="{{id}}" data-toggle="tooltip"
+                title="Edit category">
+            <i class="fa fa-edit" data-id="{{id}}"></i>
+        </button>
+        <button class="btn btn-danger btn-xs delete-category" data-id="{{id}}" data-toggle="tooltip"
+                title="Delete category">
+            <i class="fa fa-close" data-id="{{id}}"></i>
+        </button>
+    </td>
+</tr>

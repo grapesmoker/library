@@ -6,12 +6,51 @@
         <button class="btn btn-primary" id="edit-library">
             <i class="fa fa-edit"></i> Edit
         </button>
-        <button class="btn btn-primary" id="show-documents">
-            <i class="fa fa-files-o"></i> Documents
-        </button>
-        <button class="btn btn-primary" id="show-authors">
-            <i class="fa fa-pencil"></i> Authors
-        </button>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="show-documents">
+                <i class="fa fa-files-o"></i> Documents
+            </button>
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="add-new-document">New document</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="show-authors">
+                <i class="fa fa-pencil"></i> Authors
+            </button>
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="add-new-author">New author</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="show-publications">
+                <i class="fa fa-book"></i> Publications
+            </button>
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="add-new-journal">New journal</a></li>
+                <li><a href="#" id="add-new-conference">New conference proceedings</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="show-categories">
+                <i class="fa fa-book"></i> Categories
+            </button>
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="add-new-category">New category</a></li>
+            </ul>
+        </div>
     </div>
     <input type="hidden" id="library-id" value="{{id}}">
 </div>

@@ -10,4 +10,19 @@
     <tbody id="authors-body">
 
     </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" id="authors-previous" href="#">Previous</a></li>
+                    {{#each pages}}
+                        <li class="page-item">
+                            <a class="page-link" id="authors-page-{{this}}" href="#">{{this}}</a>
+                        </li>
+                    {{/each}}
+                    <li class="page-item"><a class="page-link" id="authors-next" href="#">Next</a></li>
+                </ul>
+            </td>
+        </tr>
+    </tfoot>
 </table>

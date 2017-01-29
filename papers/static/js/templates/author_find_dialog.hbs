@@ -1,0 +1,32 @@
+<div class="modal fade" role="dialog" tabindex="-1" id="author-find-dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="modal-label">Find author</h4>
+            </div>
+            <div class="modal-body">
+                <form id="author-find">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="author-name">Author name:</label>
+                            <select class="form-control" name="author-name" id="author-name">
+                                {{#each authors}}
+                                    <option value="{{id}}">{{last_name}}, {{first_name}} {{middle_name}}</option>
+                                {{/each}}
+                            </select>
+                            <!--<input type="text" name="author-name" class="form-control" id="author-name">-->
+                        </div>
+                    </fieldset>
+                </form>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-primary" id="add-author">
+                        <i class="fa fa-edit"></i> Add author
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

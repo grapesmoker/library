@@ -1,0 +1,28 @@
+<table class="table table-striped" id="categories" width="100%">
+    <thead>
+    <tr>
+        <th>Category name</th>
+        <th>Description</th>
+        <th>Parent category</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="categories-body">
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" id="categories-previous" href="#">Previous</a></li>
+                    {{#each pages}}
+                        <li class="page-item">
+                            <a class="page-link" id="categories-page-{{this}}" href="#">{{this}}</a>
+                        </li>
+                    {{/each}}
+                    <li class="page-item"><a class="page-link" id="categories-next" href="#">Next</a></li>
+                </ul>
+            </td>
+        </tr>
+    </tfoot>
+</table>

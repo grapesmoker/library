@@ -4,8 +4,13 @@ define(['backbone', 'jquery', 'underscore', 'bootstrap',
         'hbs!templates/document_edit_dialog',
         'hbs!templates/document_delete',
         'hbs!templates/author_edit_dialog',
-        'models/author'],
-  function(Backbone, $, _, bs, DocumentTemplate, DocumentEditTemplate, DocumentEditDialog, DocumentDeleteDialog, AuthorEditDialog, AuthorModel) {
+        'hbs!templates/author_find_dialog',
+        'hbs!templates/author_option',
+        'models/author',
+        'collections/authors'],
+  function(Backbone, $, _, bs,
+    DocumentTemplate, DocumentEditTemplate, DocumentEditDialog, DocumentDeleteDialog,
+    AuthorEditDialog, AuthorFindDialog, AuthorOptionTemplate, AuthorModel, AuthorCollection) {
     var DocumentView = Backbone.View.extend({
       initialize: function() {
 
@@ -116,14 +121,8 @@ define(['backbone', 'jquery', 'underscore', 'bootstrap',
               {wait: true,
                success: function(model, response, options) {
                           author_model.set(response)
-                           $('select#document-authors').append('<option value="' + author_model.get('id')  +
-                          '" data-first-name="' + author_model.get('first_name') +
-                          '" data-last-name="' + author_model.get('last_name') +
-                          '" data-middle-name="' + author_model.get('middle_name') +
-                          '" data-resource-uri="' + author_model.get('resource_uri') +
-                          '" data-id="' + author_model.attributes.id + '">' +
-                          author_model.get('last_name') + ', ' + author_model.get('first_name') + ' ' +
-                          author_model.get('middle_name') + '</option>')
+                          var author_template = AuthorOptionTemplate(author_model.attributes)
+                           $('select#document-authors').append($(author_template))
                         }
               })
             dialog.modal('hide')
@@ -133,12 +132,36 @@ define(['backbone', 'jquery', 'underscore', 'bootstrap',
 
       addExistingAuthor: function (ev) {
         ev.preventDefault()
-        console.log('add existing author')
+        var id = $(ev.currentTarget).data("id")
+        var that = this
+        if (id == this.model.attributes.id) {
+          var authors = new AuthorCollection()
+          authors.fetch({
+            success: function(collection, response) {
+              collection.set(response['objects'])
+              var dialog = $(AuthorFindDialog({authors: response['objects']}))
+              dialog.modal('show')
+              dialog.find('#add-author').click(function(ev) {
+                var author_id = parseInt($('#author-name').val())
+                var author = collection.get(author_id)
+                var author_template = AuthorOptionTemplate(author.attributes)
+                $('select#document-authors').append($(author_template))
+                dialog.modal('hide')
+              })
+            }
+          })
+        }
       },
 
       removeSelectedAuthor: function (ev) {
         ev.preventDefault()
-        console.log('remove selected author')
+        var id = $(ev.currentTarget).data("id")
+        var that = this
+        if (id == this.model.attributes.id) {
+          var selected_author = $('select#document-authors').val()
+          console.log(selected_author)
+          $('option[value="' + selected_author + '"]').remove()
+        }
       }
     });
 

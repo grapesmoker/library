@@ -12,6 +12,20 @@ class Document(models.Model):
     library = models.ForeignKey('Library', null=True)
     abstract = models.TextField(default='')
 
+    journal = models.ForeignKey('Journal', null=True)
+    pages = models.CharField(max_length=50, null=True)
+    volume = models.CharField(max_length=10, null=True)
+    series = models.CharField(max_length=200, null=True)
+    year = models.IntegerField(null=True)
+    date = models.DateField(null=True)
+
+    isbn = models.CharField(max_length=25, null=True)
+
+    type = models.CharField(max_length=100, choices=(('Document', 'Document'),
+                                                     ('Article', 'Article'),
+                                                     ('Book', 'Book')),
+                            default='Document')
+
     def to_dict(self):
         authors = [auth.to_dict() for auth in self.authors.all()]
         doc_dict = {'authors': authors,
@@ -93,29 +107,29 @@ class Publication(models.Model):
     url = models.URLField(max_length=500)
     description = models.TextField(default='', null=True)
 
+    type = models.CharField(max_length=100, choices=[['Journal', 'Journal']], default='Journal')
+
 
 class Journal(Publication):
 
-    pass
+    class Meta:
+        proxy = True
 
 
 class Article(Document):
 
-    journal = models.ForeignKey(Journal, null=True)
-    pages = models.CharField(max_length=50, null=True)
-    volume = models.CharField(max_length=10, null=True)
-    series = models.CharField(max_length=200, null=True)
-    year = models.IntegerField(null=True)
-    date = models.DateField(null=True)
+    class Meta:
+        proxy = True
 
 
 class Book(Document):
 
-    isbn = models.CharField(max_length=25)
+    class Meta:
+        proxy = True
 
 
 class Category(models.Model):
 
     name = models.CharField(max_length=200)
     description = models.TextField(null=True)
-    parent_category = models.ForeignKey('Category')
+    parent_category = models.ForeignKey('Category', null=True)

@@ -1,17 +1,25 @@
 define(['backbone', 'jquery', 'underscore',
         'collections/documents',
         'collections/authors',
+        'collections/categories',
+        'models/category',
         'views/documents',
         'views/authors',
+        'views/categories',
         'hbs!templates/library',
-        'hbs!templates/library_edit'],
+        'hbs!templates/library_edit',
+        'hbs!templates/category_edit_dialog'],
   function(Backbone, $, _,
           DocumentCollection,
           AuthorCollection,
+          CategoryCollection,
+          CategoryModel,
           DocumentCollectionView,
           AuthorCollectionView,
+          CategoryCollectionView,
           LibraryTemplate,
-          LibraryEditTemplate) {
+          LibraryEditTemplate,
+          CategoryEditDialog) {
     var LibraryView = Backbone.View.extend({
       initialize: function() {
         this.options = {limit: 20, offset: 0, maxPages: 5, currentPage: 1}
@@ -45,7 +53,10 @@ define(['backbone', 'jquery', 'underscore',
         'click #edit-library': 'editLibrary',
         'click #show-documents': 'showDocuments',
         'click #show-authors': 'showAuthors',
+        'click #show-publications': 'showPublications',
+        'click #show-categories': 'showCategories',
         'click #save-library': 'saveLibrary',
+        'click #add-new-category': 'addNewCategory',
         'click #library-next': 'showNextDocsPage'
       },
 
@@ -103,6 +114,50 @@ define(['backbone', 'jquery', 'underscore',
           collection.set(response['objects'])
           var authorsView = new AuthorCollectionView({collection: authors})
           authorsView.render()
+        }})
+      },
+
+      showPublications: function() {
+
+      },
+
+      showCategories: function() {
+        var categories = new CategoryCollection()
+        categories.fetch({success: function(collection, response, options) {
+          collection.set(response['objects'])
+          var categoriesView = new CategoryCollectionView({collection: categories})
+          categoriesView.render()
+        }})
+      },
+
+      addNewCategory: function() {
+        var allCategories = new CategoryCollection()
+        allCategories.fetch({success: function(collection, response, options) {
+          allCategories.set(response['objects'])
+          var template = CategoryEditDialog({newCat: true, categories: response['objects']})
+          var dialog = $(template)
+          dialog.modal('show')
+          dialog.find('#save-category').click(function(ev){
+            var data = dialog.find('#category-form').serializeArray()
+            var category = {}
+            _.each(data, function(elem) {
+                category[elem['name'].replace('-', '_')] = elem['value']
+            })
+            if (Number.isInteger(parseInt(category['parent']))) {
+              category['parent'] = allCategories.get(category['parent'])
+            } else { category['parent'] = null}
+
+            console.log(category)
+            var category_model = new CategoryModel()
+            category_model.save(category,
+              {wait: true,
+               success: function(model, response, options) {
+                 category_model.set(response)
+              }
+              }
+            )
+            dialog.modal('hide')
+          })
         }})
       },
 

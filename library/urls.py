@@ -14,6 +14,7 @@ library_api.register(LibraryResource())
 library_api.register(DocumentResource())
 library_api.register(DocumentRootResource())
 library_api.register(AuthorResource())
+library_api.register(CategoryResource())
 
 urlpatterns = [
     # Examples:
@@ -28,6 +29,7 @@ urlpatterns = [
     url(r'^accounts/logout/$', auth_logout),
     url(r'^logout/$', lib_logout),
     url(r'^new_library/', new_library),
+    url(r'^search/(?P<model>[aA-zZ]+)/?', search),
     # AJAX calls
     #url(r'^library/(?P<lib_id>[0-9]+)/$', library),
     url(r'^api/', include(library_api.urls))
