@@ -9,6 +9,7 @@ from django.forms.models import modelformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import ListView
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -135,3 +136,56 @@ def search(request, model):
             ).order_by('last_name')
             authors = [author.to_dict() for author in authors]
             return JsonResponse({'authors': authors})
+
+
+@login_required
+@csrf_exempt
+def rename_document(request):
+
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        ids = data['id']
+        pattern = data['pattern'].strip()
+        response = []
+        print data
+        for doc_id in ids:
+            doc = Document.objects.get(id=doc_id)
+            authors = [auth for auth in doc.authors.all()]
+            categories = [cat for cat in doc.categories.all()]
+            format_dict = {}
+            print doc
+            if '{last_name}' in pattern and len(authors) > 0:
+                format_dict['last_name'] = authors[0].last_name
+            if '{first_name}' in pattern and len(authors) > 0:
+                format_dict['first_name'] = authors[0].first_name
+            if '{author}' in pattern:
+                if len(authors) > 0:
+                    format_dict['author'] = str(authors[0]).strip()
+                else:
+                    format_dict['author'] = ''
+            if '{authors_last_names}' in pattern:
+                format_dict['authors_last_names'] = ', '.join([auth.last_name for auth in authors])
+            if '{authors}' in pattern:
+                format_dict['authors'] = '; '.join([str(auth).strip() for auth in authors])
+            if '{title}' in pattern:
+                format_dict['title'] = doc.title
+            if '{categories}' in pattern:
+                format_dict['categories'] = ', '.join([str(cat).strip() for cat in categories])
+
+            path = doc.location
+            new_file_name = pattern.format(**format_dict)
+            location = os.path.split(path)[0]
+            new_location = os.path.join(location, new_file_name)
+            if not new_location.endswith('.pdf') or new_location.endswith('.PDF'):
+                new_location += '.pdf'
+            if os.path.exists(new_location):
+                pass
+            else:
+                os.rename(path, new_location)
+
+            doc.location = new_location
+            #doc.save()
+            response.append(doc.to_dict())
+
+        return JsonResponse({'result': response})
+

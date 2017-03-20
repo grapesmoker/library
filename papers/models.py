@@ -8,6 +8,7 @@ class Document(models.Model):
 
     title = models.CharField(max_length=1000)
     authors = models.ManyToManyField('Author', null=True)
+    categories = models.ManyToManyField('Category', null=True)
     location = models.CharField(max_length=2000)
     library = models.ForeignKey('Library', null=True)
     abstract = models.TextField(default='')

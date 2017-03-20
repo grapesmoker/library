@@ -3,14 +3,18 @@ define(['backbone', 'jquery', 'underscore', 'bootstrap',
         'hbs!templates/document_edit',
         'hbs!templates/document_edit_dialog',
         'hbs!templates/document_delete',
+        'hbs!templates/document_rename',
         'hbs!templates/author_edit_dialog',
         'hbs!templates/author_find_dialog',
         'hbs!templates/author_option',
         'models/author',
         'collections/authors'],
   function(Backbone, $, _, bs,
-    DocumentTemplate, DocumentEditTemplate, DocumentEditDialog, DocumentDeleteDialog,
-    AuthorEditDialog, AuthorFindDialog, AuthorOptionTemplate, AuthorModel, AuthorCollection) {
+    DocumentTemplate, DocumentEditTemplate,
+    DocumentEditDialog, DocumentDeleteDialog,
+    DocumentRenameDialog,
+    AuthorEditDialog, AuthorFindDialog,
+    AuthorOptionTemplate, AuthorModel, AuthorCollection) {
     var DocumentView = Backbone.View.extend({
       initialize: function() {
 
@@ -30,6 +34,7 @@ define(['backbone', 'jquery', 'underscore', 'bootstrap',
         'click #save-document': 'saveDocument',
         'click #cancel-edit-document': 'cancelEditDocument',
         'click .delete-document': 'deleteDocument',
+        'click .rename-document': 'renameDocument',
         'click .add-new-author': 'addNewAuthor',
         'click .add-existing-author': 'addExistingAuthor',
         'click .remove-selected-author': 'removeSelectedAuthor',
@@ -67,6 +72,36 @@ define(['backbone', 'jquery', 'underscore', 'bootstrap',
           var template = DocumentTemplate(this.model.attributes)
           this.template = template
           $('tbody#documents-body').find('tr#document-' + id).replaceWith(template)
+        }
+      },
+
+      renameDocument: function(ev) {
+        ev.preventDefault()
+        var id = $(ev.currentTarget).data('id')
+        var that = this
+        if (id == this.model.attributes.id) {
+          var dialog = $(DocumentRenameDialog())
+          dialog.modal('show')
+          dialog.find('#rename-document-ok').click(function(ev) {
+            var data = {}
+            data['id'] = [id]
+            data['pattern'] = dialog.find('#rename-pattern').val()
+            console.log(data)
+            $.ajax({
+              url: '/rename/',
+              method: 'post',
+              data: JSON.stringify(data),
+              success: function(data, status) {
+                console.log(data)
+                var new_location = data['result'][0]['location']
+                that.model.set({location: new_location})
+                var template = DocumentTemplate(that.model.attributes)
+                that.template = template
+                $('tbody#documents-body').find('tr#document-' + id).replaceWith(template)
+              }
+            })
+            dialog.modal('hide')
+          })
         }
       },
 

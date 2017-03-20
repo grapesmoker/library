@@ -31,6 +31,7 @@ define(['backbone', 'jquery', 'underscore',
         var that = this
         console.log(this.$el)
         $('table#documents').remove()
+        $('table#categories').remove()
         var template = AuthorCollectionTemplate({})
         this.$el.html(template)
         // this.$el.html('')
