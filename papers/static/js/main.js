@@ -1,32 +1,12 @@
-require.config({
-  shim: {
-    bootstrap: {
-      deps: ['jquery'],
-      exports: 'jquery'
-    },
-  },
-  paths: {
-    jquery: '../jquery/dist/jquery',
-    jqueryui: '../jquery-ui/jquery-ui',
-    jquerycookie: '../jquery.cookie/jquery.cookie',
-    backbone: '../backbone/backbone',
-    underscore: '../underscore/underscore',
-    bootstrap: '../bootstrap/dist/js/bootstrap',
-    router: './routers/router',
-    hbs: '../require-handlebars-plugin/hbs',
-    text: '../requirejs-text/text',
-  },
-});
+window.$ = window.jQuery = require('jquery')
+var Backbone = require('backbone')
+var $ = require('jquery')
+var jquerycookie = require('jquery.cookie')
+var bs = require('bootstrap')
+var Handlebars = require('handlebars')
+var LibRouter = require('routers/router')
 
-require([
-  'backbone',
-  'jquery',
-  'underscore',
-  'router',
-  'jquerycookie',
-
-], function(Backbone, $, _, Router) {
-  $(function() {
+$(function() {
 
     // set up the custom header for csrf tokens
     var csrf = $.cookie('csrftoken')
@@ -36,7 +16,7 @@ require([
       }
     });
 
-    var router = new Router();
+    var router = new LibRouter();
     Backbone.history.start({pushState: true})
     $('[data-toggle="tooltip"]').tooltip()
 
@@ -63,5 +43,4 @@ require([
       }
     });
 
-  })
-})
+  });

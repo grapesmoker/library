@@ -1,19 +1,20 @@
-define(['backbone', 'jquery', 'underscore', 'models/category'],
-  function(Backbone, $, _, CategoryModel) {
-    var CategoryCollection = Backbone.Collection.extend({
-      model: CategoryModel,
-      url: '/api/library/category/',
+var Backbone = require('backbone');
+var $ = require('jquery');
+var _ = require('underscore');
+var CategoryModel = require('models/category')
 
-      initialize: function() {
+var CategoryCollection = Backbone.Collection.extend({
+  model: CategoryModel,
+  url: '/api/library/category/',
 
-      },
+  initialize: function() {
 
-      defaults: {
+  },
 
-      },
+  defaults: {
 
-    });
+  },
 
-    return CategoryCollection
-  }
-);
+});
+
+module.exports = CategoryCollection;

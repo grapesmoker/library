@@ -1,34 +1,34 @@
-define(['backbone', 'jquery', 'underscore'],
-  function(Backbone, $, _) {
-    var Library = Backbone.Model.extend({
-      initialize: function() {
-        this.editsAllowed = ['name', 'description']
-        this.bind('change', this.updateModel)
-      },
+var Backbone = require('backbone');
+var $ = require('jquery');
+var _ = require('underscore');
 
-      defaults: {
+var Library = Backbone.Model.extend({
+  initialize: function() {
+    this.editsAllowed = ['name', 'description']
+    this.bind('change', this.updateModel)
+  },
 
-      },
+  defaults: {
 
-      updateModel: function() {
-        this.save()
-      },
+  },
 
-      save: function(attrs, options) {
-        options || (options = {})
-        var allAttrs = _.extend({}, this.attributes, attrs)
-        var allowedAttrs = _.pick(allAttrs, this.editsAllowed)
+  updateModel: function() {
+    this.save()
+  },
 
-        options.contentType = "application/json";
-        options.data = JSON.stringify(allowedAttrs);
+  save: function(attrs, options) {
+    options || (options = {})
+    var allAttrs = _.extend({}, this.attributes, attrs)
+    var allowedAttrs = _.pick(allAttrs, this.editsAllowed)
 
-        return Backbone.Model.prototype.save.call(
-          this, allowedAttrs, options);
-      },
+    options.contentType = "application/json";
+    options.data = JSON.stringify(allowedAttrs);
 
-      urlRoot: '/api/library/library'
-    });
+    return Backbone.Model.prototype.save.call(
+      this, allowedAttrs, options);
+  },
 
-    return Library
-  }
-);
+  urlRoot: '/api/library/library'
+});
+
+module.exports = Library

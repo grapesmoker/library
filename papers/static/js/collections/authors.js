@@ -1,19 +1,20 @@
-define(['backbone', 'jquery', 'underscore', 'models/author'],
-  function(Backbone, $, _, AuthorModel) {
-    var AuthorCollection = Backbone.Collection.extend({
-      model: AuthorModel,
-      url: '/api/library/author',
+var Backbone = require('backbone');
+var $ = require('jquery');
+var _ = require('underscore');
+var AuthorModel = require('models/author')
 
-      initialize: function() {
+var AuthorCollection = Backbone.Collection.extend({
+  model: AuthorModel,
+  url: '/api/library/author',
 
-      },
+  initialize: function() {
 
-      defaults: {
+  },
 
-      },
+  defaults: {
 
-    });
+  },
 
-    return AuthorCollection
-  }
-);
+});
+
+module.exports = AuthorCollection

@@ -1,26 +1,26 @@
-define(['backbone', 'jquery', 'underscore'],
-  function(Backbone, $, _) {
-    var Category = Backbone.Model.extend({
-      initialize: function() {
-        this.bind('change', this.updateModel)
-        this.bind('sync', this.refreshModel)
-      },
+var Backbone = require('backbone');
+var $ = require('jquery');
+var _ = require('underscore');
 
-      defaults: {
+var Category = Backbone.Model.extend({
+  initialize: function() {
+    this.bind('change', this.updateModel)
+    this.bind('sync', this.refreshModel)
+  },
 
-      },
+  defaults: {
 
-      updateModel: function() {
-        this.save()
-      },
+  },
 
-      refreshModel: function(model, response, options) {
+  updateModel: function() {
+    this.save()
+  },
 
-      },
+  refreshModel: function(model, response, options) {
 
-      urlRoot: '/api/library/category/'
-    });
+  },
 
-    return Category
-  }
-);
+  urlRoot: '/api/library/category/'
+});
+
+module.exports = Category;

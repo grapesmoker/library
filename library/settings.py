@@ -108,12 +108,14 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'components', 'bower_components'),
-    #os.path.join(BASE_DIR, 'papers', 'static')
+    os.path.join(BASE_DIR, 'static')
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+
+#print STATIC_ROOT, STATICFILES_DIRS
 
 BOWER_INSTALLED_APPS = (
     'jquery',
