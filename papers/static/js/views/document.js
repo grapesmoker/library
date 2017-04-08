@@ -36,6 +36,7 @@ var DocumentView = Backbone.View.extend({
     'click #cancel-edit-document': 'cancelEditDocument',
     'click .delete-document': 'deleteDocument',
     'click .rename-document': 'renameDocument',
+    'click .view-document': 'viewDocument',
     'click .add-new-author': 'addNewAuthor',
     'click .add-existing-author': 'addExistingAuthor',
     'click .remove-selected-author': 'removeSelectedAuthor',
@@ -103,6 +104,13 @@ var DocumentView = Backbone.View.extend({
         })
         dialog.modal('hide')
       })
+    }
+  },
+
+  viewDocument: function(ev) {
+    var id = $(ev.currentTarget).data('id')
+    if (id == this.model.attributes.id) {
+      window.open('/view/' + id, '_blank')
     }
   },
 

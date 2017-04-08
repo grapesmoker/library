@@ -320,10 +320,14 @@ this["JST"]["document_rename"] = Handlebars.template({"compiler":[7,">= 4.0.0"],
     return "<div class=\"modal fade\" role=\"dialog\" tabindex=\"-1\" id=\"document-rename-dialog\">\n    <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n                    <span aria-hidden=\"true\">&times;</span>\n                </button>\n                <h4 class=\"modal-title\" id=\"modal-label\">Rename document</h4>\n            </div>\n            <div class=\"modal-body\">\n                <!--<form id=\"rename-document-form\">-->\n                  <div class=\"form-group\">\n                    <label for=\"pattern\">Pattern:</label>\n                    <input type=\"text\" id=\"rename-pattern\" name=\"pattern\" class=\"form-control\">\n                    <span class=\"help-block\">\n                      The following patterns are available: {title}, {author},\n                      {publisher}, {journal}, {category}</span>\n                  </div>\n                <!--</form>-->\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn btn-primary\"\n                  id=\"rename-document-ok\">Ok</button>\n                <button type=\"button\" class=\"btn btn-primary\"\n                  id=\"rename-document-cancel\" data-dismiss=\"modal\">Cancel</button>\n            </div>\n        </div>\n    </div>\n</div>\n";
 },"useData":true});
 
+this["JST"]["document_view"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<object type=\"application/pdf\"></object>\n";
+},"useData":true});
+
 this["JST"]["document"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "            <h4>"
+  return "            <h4 class=\"author-name\">"
     + alias4(((helper = (helper = helpers.last_name || (depth0 != null ? depth0.last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"last_name","hash":{},"data":data}) : helper)))
     + ", "
     + alias4(((helper = (helper = helpers.first_name || (depth0 != null ? depth0.first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"first_name","hash":{},"data":data}) : helper)))
@@ -337,10 +341,10 @@ this["JST"]["document"] = Handlebars.template({"1":function(container,depth0,hel
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
     + "\">\n    <td id=\"document-data-"
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\" width=\"80%\">\n        <h4>"
-    + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
-    + "</h4>\n        <h4>"
+    + "\" width=\"80%\">\n        <h4 class=\"document-title\" data-toggle=\"tooltip\" title=\""
     + alias4(((helper = (helper = helpers.location || (depth0 != null ? depth0.location : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"location","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "</h4>\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.authors : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        <p>"
@@ -355,11 +359,15 @@ this["JST"]["document"] = Handlebars.template({"1":function(container,depth0,hel
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
     + "\"\n                data-toggle=\"tooltip\" title=\"Rename document\">\n            <i class=\"fa fa-file-text\" data-id=\""
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\"></i>\n        </button>\n        <button class=\"btn btn-primary btn-xs view-document\" data-id=\""
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\"\n                data-toggle=\"tooltip\" title=\"View document\">\n            <i class=\"fa fa-eye\" data-id=\""
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
     + "\"></i>\n        </button>\n        <button class=\"btn btn-danger btn-xs delete-document\" data-id=\""
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
     + "\"\n                data-toggle=\"tooltip\" title=\"Delete document\">\n            <i class=\"fa fa-close\" data-id=\""
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\"></i>\n        </button>\n\n    </td>\n</tr>\n";
+    + "\"></i>\n        </button>\n    </td>\n</tr>\n";
 },"useData":true});
 
 this["JST"]["documents"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {

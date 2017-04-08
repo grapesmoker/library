@@ -189,3 +189,12 @@ def rename_document(request):
 
         return JsonResponse({'result': response})
 
+
+def view_document(request, document_id):
+
+    if request.method == 'GET':
+
+        document = Document.objects.get(id=document_id)
+        with open(document.location, 'rb') as f:
+            data = f.read()
+            return HttpResponse(data, content_type='application/pdf')

@@ -1,9 +1,8 @@
 <tr id="document-{{id}}">
     <td id="document-data-{{id}}" width="80%">
-        <h4>{{title}}</h4>
-        <h4>{{location}}</h4>
+        <h4 class="document-title" data-toggle="tooltip" title="{{location}}">{{title}}</h4>
         {{#each authors}}
-            <h4>{{last_name}}, {{first_name}} {{middle_name}}</h4>
+            <h4 class="author-name">{{last_name}}, {{first_name}} {{middle_name}}</h4>
         {{/each}}
         <p>{{abstract}}</p>
     </td>
@@ -16,10 +15,13 @@
                 data-toggle="tooltip" title="Rename document">
             <i class="fa fa-file-text" data-id="{{id}}"></i>
         </button>
+        <button class="btn btn-primary btn-xs view-document" data-id="{{id}}"
+                data-toggle="tooltip" title="View document">
+            <i class="fa fa-eye" data-id="{{id}}"></i>
+        </button>
         <button class="btn btn-danger btn-xs delete-document" data-id="{{id}}"
                 data-toggle="tooltip" title="Delete document">
             <i class="fa fa-close" data-id="{{id}}"></i>
         </button>
-
     </td>
 </tr>

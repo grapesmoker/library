@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^new_library/', new_library),
     url(r'^search/(?P<model>[aA-zZ]+)/?', search),
     url(r'^rename/$', rename_document),
+    url(r'^view/(?P<document_id>[0-9]+)/$', view_document),
     # AJAX calls
     #url(r'^library/(?P<lib_id>[0-9]+)/$', library),
     url(r'^api/', include(library_api.urls))

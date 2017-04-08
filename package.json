@@ -1,17 +1,19 @@
 {
-    "name": "library",
-    "version": "0.0.1",
-    "dependencies": {
-	"grunt": "*",
-	"handlebars": "*",
-	"backbone": "*",
-	"bootstrap": "*",
-	"fontawesome": "*",
-	"jquery": "*",
-	"jquery.cookie": "*"
-    },
-    "devDependencies": {
-	"grunt-browserify": "^5.0.0",
-	"grunt-contrib-handlebars": "^1.0.0"
-    }
+  "name": "library",
+  "version": "0.0.1",
+  "dependencies": {
+    "grunt": "*",
+    "handlebars": "*",
+    "backbone": "*",
+    "bootstrap": "*",
+    "fontawesome": "*",
+    "jquery": "*",
+    "jquery.cookie": "*"
+  },
+  "devDependencies": {
+    "colors.css": "^3.0.0",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-handlebars": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
 }
