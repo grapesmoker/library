@@ -2,7 +2,15 @@
     <thead>
     <tr>
         <th>Document Info</th>
-        <th>Actions</th>
+        <th>
+          <span class="text-left">Actions</span>
+          <span class="text-right">
+            <select class="form-control" id="bulk-actions">
+              <option value="rename">Rename</option>
+              <option value="delete">Delete</option>
+            </select>
+          </span>
+        </th>
     </tr>
     </thead>
     <tbody id="documents-body">

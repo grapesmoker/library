@@ -16,6 +16,10 @@ var DocumentCollectionView = Backbone.View.extend({
     this.$el.append(template)
   },
 
+  events: {
+    'input #bulk-actions': 'doBulkActions'
+  },
+
   //el: '#contents',
 
   el: function() {
@@ -48,6 +52,10 @@ var DocumentCollectionView = Backbone.View.extend({
 
     return this
   },
+
+  doBulkActions: function () {
+    console.log($('#bulk-actions').val());
+  }
 
 });
 

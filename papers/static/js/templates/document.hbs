@@ -1,5 +1,5 @@
 <tr id="document-{{id}}">
-    <td id="document-data-{{id}}" width="80%">
+    <td id="document-data-{{id}}" width="60%">
         <h4 class="document-title" data-toggle="tooltip" title="{{location}}">{{title}}</h4>
         {{#each authors}}
             <h4 class="author-name">{{last_name}}, {{first_name}} {{middle_name}}</h4>
@@ -23,5 +23,12 @@
                 data-toggle="tooltip" title="Delete document">
             <i class="fa fa-close" data-id="{{id}}"></i>
         </button>
+    </td>
+    <td>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="check-{{id}}">
+        </label>
+      </div>
     </td>
 </tr>

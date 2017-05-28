@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 	watch: {
 	    scripts: {
 		files: ['papers/static/js/**/*.js', 'papers/static/js/templates/**/*.hbs'],
-		tasls: ['default']
+		tasks: ['default']
 	    }
 	}
     });

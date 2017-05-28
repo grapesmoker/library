@@ -1,7 +1,7 @@
 var Backbone = require('backbone')
 var $ = require('jquery')
 var _ = require('underscore')
-var Library = require('models/library')
+var LibraryModel = require('models/library')
 var LibraryView = require('views/library')
 
 var Router = Backbone.Router.extend({
@@ -9,7 +9,7 @@ var Router = Backbone.Router.extend({
     'home': 'home',
     'settings': 'settings',
     'library': 'library',
-    'library/:id': 'library',
+    'library/:id/': 'library'
     //'login': 'accounts/login'
   },
 
@@ -18,10 +18,13 @@ var Router = Backbone.Router.extend({
   },
 
   library: function(lib_id) {
-    var library = new Library({id: lib_id})
+    var library = new LibraryModel({id: lib_id})
+    //var library_view = new LibraryView({model: library})
+    //console.log(library.url())
+
     library.fetch({
-      success: function(library_data) {
-        var library = new LibraryView({model: library_data})
+      success: function(model, library_data) {
+        var library = new LibraryView({model: model})
       }
     })
   },
